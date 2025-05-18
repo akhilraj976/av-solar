@@ -10,30 +10,36 @@
             --primary-color: #4CAF50;
             --secondary-color: #45a049;
             --accent-color: #ffd700;
+            --background-overlay: rgba(20, 20, 20, 0.70);
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                        url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3') no-repeat center center fixed;
+            background: linear-gradient(
+                120deg,
+                rgba(0,0,0,0.45) 0%,
+                rgba(0,0,0,0.25) 100%
+            ),
+            url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: white;
+            color: #f5f5f5;
         }
 
         .header {
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
             padding: 1rem 0;
             position: fixed;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
         }
 
         .nav {
@@ -51,9 +57,10 @@
             font-size: 1.1rem;
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
             cursor: pointer;
             position: relative;
+            letter-spacing: 0.5px;
         }
 
         .nav a::after {
@@ -64,7 +71,7 @@
             bottom: 0;
             left: 50%;
             background-color: var(--accent-color);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
             transform: translateX(-50%);
         }
 
@@ -81,23 +88,23 @@
         }
 
         .content {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 2rem;
+            background: var(--background-overlay);
+            padding: 2.5rem 2rem 2rem 2rem;
             margin-top: 6rem;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+            gap: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            backdrop-filter: blur(8px);
         }
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.7s cubic-bezier(.4,2,.3,1);
         }
 
         .tab-content.active {
@@ -105,52 +112,55 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        h1, h2, h3, h4, h5, h6 {
             color: var(--accent-color);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+        p, li, label, input, textarea, table, th, td {
+            color: #f5f5f5;
         }
 
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
             width: 100%;
         }
 
         .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+            background: rgba(255,255,255,0.13);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            border: 1.5px solid rgba(255,255,255,0.18);
         }
 
         .stat-box:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
         }
 
         .stat-box i {
-            font-size: 2rem;
+            font-size: 2.3rem;
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .contact-form {
             width: 100%;
             max-width: 500px;
             margin-top: 2rem;
+            background: rgba(255,255,255,0.10);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
         }
 
         .form-group {
@@ -168,11 +178,12 @@
         .form-group textarea {
             width: 100%;
             padding: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
+            border: 1.5px solid rgba(255,255,255,0.25);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.13);
             color: white;
             font-size: 1rem;
+            transition: border 0.2s;
         }
 
         .form-group input:focus,
@@ -182,34 +193,108 @@
         }
 
         .btn {
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.2rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease;
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: background 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
         }
 
         .btn:hover {
-            background-color: var(--secondary-color);
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             margin-top: 2rem;
         }
 
         .social-links a {
             color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            font-size: 1.7rem;
+            transition: color 0.3s;
         }
 
         .social-links a:hover {
             color: var(--accent-color);
+        }
+
+        /* Creative divider for home */
+        .creative-divider {
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
+            margin: 2.5rem auto 2rem auto;
+            opacity: 0.7;
+        }
+
+        .setup-solar-guide {
+            background: rgba(34, 34, 34, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            padding: 2.2rem 1.5rem 2.5rem 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        .setup-solar-guide h2 {
+            margin-bottom: 0.7rem;
+            font-size: 2rem;
+        }
+        .setup-solar-guide .steps-list {
+            text-align: left;
+            margin: 0 auto 2.2rem auto;
+            max-width: 700px;
+            font-size: 1.08rem;
+            padding-left: 1.2rem;
+        }
+        .setup-solar-guide table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem 0;
+            background: rgba(255,255,255,0.07);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+        }
+        .setup-solar-guide th, .setup-solar-guide td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.10);
+            text-align: left;
+        }
+        .setup-solar-guide th {
+            background: rgba(255,215,0,0.13);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        .setup-solar-guide tr:last-child td {
+            border-bottom: none;
+        }
+        .setup-solar-guide .tip-box {
+            margin-top:2rem;
+            background:rgba(255,255,255,0.10);
+            padding:1.5rem;
+            border-radius:10px;
+            color:#ffd700;
+            font-size:1.15rem;
+            text-align:center;
+        }
+        .setup-solar-guide .section-title {
+            margin-top: 2rem;
+            margin-bottom: 0.7rem;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 0.7rem;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -218,14 +303,14 @@
         <nav class="nav">
             <a href="#" class="active" data-tab="home">Home</a>
             <a href="#" data-tab="products">Products</a>
-            <a href="#" data-tab="services">Services</a>
             <a href="#" data-tab="about">About</a>
             <a href="#" data-tab="contact">Contact</a>
+            <a href="#" data-tab="blueprint">Solar Project Blueprint</a>
         </nav>
     </header>
     <div class="content">
         <div id="home" class="tab-content active">
-            <h1>Welcome to Our AV Solar Farm</h1>
+            <h1>Welcome to AV Solar Farm</h1>
             <p>
                 Experience the power of sustainable energy at our state-of-the-art solar farm. 
                 Our facility harnesses the sun's energy to power thousands of homes while 
@@ -248,6 +333,142 @@
                     <p>Tons CO2 Saved</p>
                 </div>
             </div>
+            <div class="creative-divider"></div>
+        </div>
+
+        <div id="blueprint" class="tab-content">
+            <h1>Detailed Profitability Analysis: 1 MW Solar Farm</h1>
+            <div class="setup-solar-guide">
+                <div class="section-title">1. Project Summary</div>
+                <p><b>Project:</b> 1 MW (AC) Grid Connected Solar PV Power Plant<br>
+                <b>Location:</b> Telangana, India<br>
+                <b>Land Required:</b> 4–5 acres<br>
+                <b>Expected Plant Life:</b> 25 years</p>
+
+                <div class="section-title">Key Assumptions and Inputs</div>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>Plant Capacity (AC)</td><td>1 MW</td></tr>
+                    <tr><td>Location</td><td>Telangana, India</td></tr>
+                    <tr><td>Land Cost</td><td>Nil (land already owned)</td></tr>
+                    <tr><td>Project Cost (per MW)</td><td>₹5 crore (₹500 lakh)</td></tr>
+                    <tr><td>Subsidy</td><td>₹1.5 crore (30%, PM-KUSUM/central schemes)</td></tr>
+                    <tr><td>Bank Loan</td><td>₹3 crore (60%) at 9.75% per annum</td></tr>
+                    <tr><td>Farmer’s Equity</td><td>₹50 lakh (10%)</td></tr>
+                    <tr><td>PPA Tariff</td><td>₹3.13/kWh (fixed for 25 years, per TGERC PM-KUSUM order)</td></tr>
+                    <tr><td>Annual Generation</td><td>1,460,000 units (kWh)</td></tr>
+                    <tr><td>O&M Cost</td><td>₹8 lakh/year</td></tr>
+                    <tr><td>Loan Tenure</td><td>11 years (typical for Indian solar projects)</td></tr>
+                    <tr><td>Interest Rate</td><td>9.75% per annum (current market rate)</td></tr>
+                    <tr><td>Inflation (O&M and general costs)</td><td>5% per annum</td></tr>
+                    <tr><td>Panel Degradation</td><td>0.5% per year (first 10 years), 0.67% per year (years 11–25)</td></tr>
+                    <tr><td>Tax Waiver</td><td>100% for 10 years (Section 80-IA)</td></tr>
+                    <tr><td>Accelerated Depreciation</td><td>40% per annum</td></tr>
+                </table>
+
+                <div class="section-title">2. Capital Cost Estimate</div>
+                <table>
+                    <tr><th>Component</th><th>Cost (INR Lakhs)</th></tr>
+                    <tr><td>Solar PV Modules</td><td>270</td></tr>
+                    <tr><td>Inverters</td><td>40</td></tr>
+                    <tr><td>Module Mounting Structure</td><td>25</td></tr>
+                    <tr><td>DC Cables & BOS</td><td>20</td></tr>
+                    <tr><td>AC Cables & Switchgear</td><td>15</td></tr>
+                    <tr><td>Transformers</td><td>15</td></tr>
+                    <tr><td>Civil & General Works</td><td>25</td></tr>
+                    <tr><td>Land Cost</td><td>50</td></tr>
+                    <tr><td>Miscellaneous (approvals, insurance, etc.)</td><td>10</td></tr>
+                    <tr style="font-weight:bold;"><td>Total Project Cost</td><td>470</td></tr>
+                </table>
+                <p><b>Total Project Cost:</b> ₹4.7 Crores (approximate, may vary by site and vendor)</p>
+
+                <div class="section-title">3. Generation & Performance</div>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>Annual Generation (kWh)</td><td>15,00,000</td></tr>
+                    <tr><td>CUF (Capacity Utilization Factor)</td><td>17.1%</td></tr>
+                    <tr><td>Performance Ratio</td><td>78%</td></tr>
+                    <tr><td>Degradation (per year)</td><td>0.7%</td></tr>
+                </table>
+
+                <div class="section-title">4. Revenue & Tariff</div>
+                <table>
+                    <tr><th>Year</th><th>Units Sold (kWh)</th><th>Tariff (₹/kWh)</th><th>Annual Revenue (₹ Lakhs)</th></tr>
+                    <tr><td>1</td><td>14,60,000</td><td>3.13</td><td>45.7</td></tr>
+                    <tr><td>2</td><td>14,52,700</td><td>3.13</td><td>45.5</td></tr>
+                    <tr><td>5</td><td>14,41,500</td><td>3.13</td><td>45.2</td></tr>
+                    <tr><td>10</td><td>14,30,000</td><td>3.13</td><td>44.8</td></tr>
+                    <tr><td>15</td><td>14,18,500</td><td>3.13</td><td>44.4</td></tr>
+                    <tr><td>20</td><td>14,07,000</td><td>3.13</td><td>44.0</td></tr>
+                    <tr><td>25</td><td>13,95,500</td><td>3.13</td><td>43.7</td></tr>
+                </table>
+                <p><b>Tariff Assumed:</b> ₹3.13 per unit (fixed for 25 years, per TGERC PM-KUSUM order)</p>
+
+                <div class="section-title">5. Operation & Maintenance (O&M) Costs</div>
+                <table>
+                    <tr><th>O&M Item</th><th>Annual Cost (₹ Lakhs)</th></tr>
+                    <tr><td>Panel Cleaning & Site Maintenance</td><td>2.5</td></tr>
+                    <tr><td>Inverter & Electrical Maintenance</td><td>1.5</td></tr>
+                    <tr><td>Security & Insurance</td><td>2.0</td></tr>
+                    <tr><td>Performance Monitoring</td><td>2.0</td></tr>
+                    <tr style="font-weight:bold;"><td>Total O&M Cost (per year)</td><td>8.0</td></tr>
+                </table>
+
+                <!-- BEGIN: Detailed Financial & Profitability Analysis -->
+                <div class="section-title">6. Annual Revenue and Net Profit Calculation</div>
+                <table>
+                    <tr><th>Year</th><th>Gross Revenue (₹ Lakhs)</th><th>O&M Cost (₹ Lakhs)</th><th>Net Cash Flow Before Loan (₹ Lakhs)</th></tr>
+                    <tr><td>1</td><td>45.8</td><td>8.0</td><td>37.8</td></tr>
+                </table>
+                <p><b>Note:</b> Gross revenue is calculated as 1,460,000 units × ₹3.13 = ₹45,79,800. O&M cost is ₹8,00,000. Net cash flow before loan repayment is ₹37,79,800.</p>
+
+                <div class="section-title">7. Loan Repayment Calculation</div>
+                <table>
+                    <tr><th>Loan Amount</th><th>Interest Rate</th><th>EMI (11 years)</th><th>Year 1 Interest</th></tr>
+                    <tr><td>₹3 crore</td><td>9.75%</td><td>₹39.18 lakh/year</td><td>₹29.25 lakh</td></tr>
+                </table>
+                <p>Net cash flow after loan repayment (Year 1): ₹37,79,800 – ₹39,18,000 = <b>–₹1,38,200</b> (slight deficit in initial years, improves as interest component reduces).</p>
+
+                <div class="section-title">8. Inflation and Degradation Effects</div>
+                <ul>
+                    <li>O&M cost escalation: 5% annual increase</li>
+                    <li>Panel degradation: 0.5% per year (years 1–10), 0.67% per year (years 11–25)</li>
+                    <li>Revenue does not increase with inflation (tariff is fixed), so real profit decreases over time</li>
+                </ul>
+
+                <div class="section-title">9. Break-Even and Profit Calculation</div>
+                <p>Cumulative net cash flow is low or slightly negative in the early years due to loan repayments, but improves as principal reduces. Break-even is typically reached in year 9–10, as cumulative net cash flow turns positive after accounting for all repayments and O&M costs.</p>
+
+                <div class="section-title">10. Profit After Break-Even (Years 12–25)</div>
+                <table>
+                    <tr><th>Year</th><th>Generation (kWh)</th><th>Revenue (₹ Lakhs)</th><th>O&M (₹ Lakhs)</th><th>Net Profit (₹ Lakhs)</th></tr>
+                    <tr><td>12</td><td>13,71,600</td><td>42.9</td><td>13.6</td><td>29.3</td></tr>
+                    <tr><td>20</td><td>13,00,000</td><td>40.7</td><td>20.2</td><td>20.5</td></tr>
+                    <tr><td>25</td><td>12,50,000</td><td>39.1</td><td>25.7</td><td>13.4</td></tr>
+                </table>
+                <p>Total profits after break-even (years 12–25): <b>₹3–4 crore</b> (discounted for degradation and inflation).</p>
+
+                <div class="section-title">11. Best-Case vs. Average-Case Scenario</div>
+                <table>
+                    <tr><th>Scenario</th><th>PPA Tariff (₹/kWh)</th><th>Annual Output (kWh)</th><th>O&M Cost (Year 1, ₹ Lakhs)</th><th>Net Profit After Loan (Year 12, ₹ Lakhs)</th><th>Break-Even Year</th><th>Total Profits (Years 12–25, ₹ Crore)</th></tr>
+                    <tr><td>Best Case</td><td>4.00</td><td>15,00,000</td><td>8.0</td><td>46</td><td>6–7</td><td>5–6</td></tr>
+                    <tr><td>Average Case</td><td>3.13</td><td>14,60,000</td><td>8.0</td><td>29</td><td>9–10</td><td>3–4</td></tr>
+                </table>
+
+                <div class="section-title">12. Key Insights and Recommendations</div>
+                <ul style="text-align: left;"></ul>
+                <ul>
+                    <li>Break-even is achieved in 6–10 years, depending on tariff and output.</li>
+                    <li>After break-even, expect annual profits starting at ₹29–46 lakh, declining slowly due to panel degradation and rising O&M costs.</li>
+                    <li>Cumulative profits (years 12–25) are ₹3–6 crore, depending on scenario.</li>
+                    <li>Inflation erodes real profit, as PPA tariffs are fixed but O&M costs rise; early years are most profitable in real terms.</li>
+                    <li>Loan interest is the primary drag on early profits; after repayment, cash flows improve sharply.</li>
+                    <li><b>Recommendations:</b> Negotiate for the highest possible PPA tariff (open access or C&I buyers may pay up to ₹4/kWh). Use high-efficiency panels to maximize output. Optimize O&M contracts to control cost escalation. Leverage all subsidies and tax waivers in early years. Consider refinancing if interest rates drop, to reduce loan burden.</li>
+                </ul>
+
+                <div class="section-title">13. Conclusion</div>
+                <p>You will break even in 6–10 years, depending on the PPA tariff and output. After break-even, expect annual profits of ₹29–46 lakh, gradually declining due to inflation and panel degradation. Total profits after break-even (years 12–25) will be ₹3–6 crore. Loan interest and O&M inflation are the main factors reducing early profits; after loan repayment, profits rise sharply. This project is financially viable with strong long-term returns, especially if you secure a higher PPA tariff and control O&M cost escalation.</p>
+                <!-- END: Detailed Financial & Profitability Analysis -->
         </div>
 
         <div id="products" class="tab-content">
@@ -272,32 +493,6 @@
                     <i class="fas fa-battery-full"></i>
                     <h3>Storage</h3>
                     <p>Energy Storage Systems</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="services" class="tab-content">
-            <h1>Our Services</h1>
-            <p>
-                From installation to maintenance, our expert team provides comprehensive
-                solar energy services. We handle everything from initial consultation to
-                ongoing support and optimization.
-            </p>
-            <div class="stats-container">
-                <div class="stat-box">
-                    <i class="fas fa-tools"></i>
-                    <h3>Installation</h3>
-                    <p>Professional Setup</p>
-                </div>
-                <div class="stat-box">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Maintenance</h3>
-                    <p>Regular Check-ups</p>
-                </div>
-                <div class="stat-box">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Monitoring</h3>
-                    <p>Performance Tracking</p>
                 </div>
             </div>
         </div>
@@ -350,14 +545,11 @@
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     // Remove active class from all tabs and contents
                     tabs.forEach(t => t.classList.remove('active'));
                     tabContents.forEach(content => content.classList.remove('active'));
-                    
                     // Add active class to clicked tab
                     this.classList.add('active');
-                    
                     // Show corresponding content
                     const tabId = this.getAttribute('data-tab');
                     document.getElementById(tabId).classList.add('active');
@@ -377,4 +569,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
